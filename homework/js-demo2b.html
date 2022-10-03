@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>  
+<title>My Second Web Page</title>
+
+<link rel="stylesheet" href="demo.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+
+    $("#btn").click(function(event){
+    $("table").append('<caption></caption>');
+    $("table").append('<thead></thead>');
+    $("table").append('<tbody></tbody>');
+    $("table").append('<tfoot></tfoot>');
+    $("thead").append('<tr id="showheading"></tr>');
+    for(i=0;i<5;i++){
+        $("#showheading").append('<th></th>');
+    }
+    $("tbody").append('<tr id="showcalories"></tr>');
+    $("tbody").append('<tr id="showfat"></tr>')
+    $("tfoot").append('<tr id="showven"></tr>');
+    var idName = ["showcalories", "showfat", "showven"];
+    for(i=0;i<3;i++){
+        for(j=0;j<5;j++){
+            $("#"+idName[i]).append('<td></td>');
+        }
+    }
+    $.getJSON('/data.json', function(jqdata){
+        $('caption').text(jqdata.title);
+        $('#showheading th:nth-child(1)').text(jqdata.heading);
+        $('#showcalories td:nth-child(1)').text(jqdata.subheadcal);
+        $('#showfat td:nth-child(1)').text(jqdata.subheadfat);
+        $('#showven td:nth-child(1)').text(jqdata.subheadven);
+
+        $('#showheading th:nth-child(2)').text(jqdata.head1);
+        $('#showheading th:nth-child(3)').text(jqdata.head2);
+        $('#showheading th:nth-child(4)').text(jqdata.head3);
+        $('#showheading th:nth-child(5)').text(jqdata.head4);
+
+        $('#showcalories td:nth-child(2)').text(jqdata.cal1);
+        $('#showcalories td:nth-child(3)').text(jqdata.cal2);
+        $('#showcalories td:nth-child(4)').text(jqdata.cal3);
+        $('#showcalories td:nth-child(5)').text(jqdata.cal4);
+
+        $('#showfat td:nth-child(2)').text(jqdata.fat1);
+        $('#showfat td:nth-child(3)').text(jqdata.fat2);
+        $('#showfat td:nth-child(4)').text(jqdata.fat3);
+        $('#showfat td:nth-child(5)').text(jqdata.fat4);
+
+        $('#showven td:nth-child(2)').text(jqdata.ven1);
+        $('#showven td:nth-child(3)').text(jqdata.ven2);
+        $('#showven td:nth-child(4)').text(jqdata.ven3);
+        $('#showven td:nth-child(5)').text(jqdata.ven4);
+    })
+});
+});
+</script>
+</head> 	
+<body>
+
+<div id="container">
+
+<header>My Web Site Brand</header>
+<nav>
+<ul>
+<li><a href="js-demo2.html">Home</a></li>
+<li><a href="js-demo2b.html">About</a></li>
+<li><a href="js-demo2d.html">Gallery</a></li>
+<li><a href="js-demo2c.html">Contact</a></li>
+</ul>
+</nav>
+
+<main>
+<h1>My Second Heading</h1>
+<p>My Second paragraph.</p>
+
+<table>
+
+</table>
+
+<input type = "button" id = "btn" value = "Load Data" style="margin-top:20px;" />
+</main>
+
+<footer>&copy; Copyright 2020</footer>
+
+</div>
+
+</body>
+</html>
